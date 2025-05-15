@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package tasks;
+option go_package = "github.com/Suhach/test_protoc-cont/proto/task";
+
+service TaskService {
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTasksByUser(GetTasksByUserRequest) returns (GetTasksByUserResponse);
+  rpc GetAllTasks(GetAllTasksRequest) returns (GetAllTasksResponse);
+  rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
+}
+
+message CreateTaskRequest {
+  string task = 1;
+  bool is_done = 2;
+  uint32 user_id = 3;
+}
+
+message CreateTaskResponse {
+  uint32 id = 1;
+  string task = 2;
+  bool is_done = 3;
+  uint32 user_id = 4;
+}
+
+message GetTasksByUserRequest {
+  uint32 user_id = 1;
+}
+
+message GetTasksByUserResponse {
+  repeated Task tasks = 1;
+}
+
+message GetAllTasksRequest {}
+
+message GetAllTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message GetTaskRequest {
+  uint32 id = 1;
+}
+
+message GetTaskResponse {
+  uint32 id = 1;
+  string task = 2;
+  bool is_done = 3;
+  uint32 user_id = 4;
+}
+
+message UpdateTaskRequest {
+  uint32 id = 1;
+  string task = 2;
+  bool is_done = 3;
+  uint32 user_id = 4;
+}
+
+message UpdateTaskResponse {
+  uint32 id = 1;
+  string task = 2;
+  bool is_done = 3;
+  uint32 user_id = 4;
+}
+
+message DeleteTaskRequest {
+  uint32 id = 1;
+}
+
+message DeleteTaskResponse {}
+
+message Task {
+  uint32 id = 1;
+  string task = 2;
+  bool is_done = 3;
+  uint32 user_id = 4;
+}
